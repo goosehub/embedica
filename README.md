@@ -6,12 +6,10 @@
 
 <p>No external libraries required. Just include and use. Pass in a string as a parameter. Returns the string with URLs converted to the desired HTML.</p>
 
-<code>
+```
     /* Default to convert all */
     string = embedica(string);
-</code>
-
-<code>
+    
     /* Specify which URLs to convert */
     var embedica_settings = {
         "youtube": true,
@@ -24,7 +22,7 @@
         "general_url": true
     };
     var string = embedica(string, embedica_settings);
-</code>
+```
 
 <h2>Support</h2>
 
