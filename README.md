@@ -4,14 +4,14 @@
 
 <h2>Usage</h2>
 
-No external libraries required. Just include and use.
+<p>No external libraries required. Just include and use. Pass in a string as a parameter. Returns the string with URLs converted to the desired HTML.</p>
 
 <code>
-    // Defaults to convert all
-    // Pass in a string as a parameter
-    // Returns the string with URLs converted to the desired HTML
+    // Default to convert all
     string = embedica(string);
-    
+</code>
+
+<code>
     // Specify which URLs to convert
     var embedica_settings = {
         "youtube": true,
