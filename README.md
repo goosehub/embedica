@@ -32,10 +32,11 @@
     <li>Twitch</li>
     <li>Soundcloud (with an api call)</li>
     <li>Vocaroo</li>
-    <li>Video URLs (webm, mp4, ogv)</li>
-    <li>Image URLs (jpg, gif, png)</li>
-    <li>General URLs into hyperlinks (works best when begins with http/https and/or ends with /)</li>
-    <li>Will match multiple on a single string input</li>
+    <li>Video URLs (webm, mp4, ogv) as a video tag</li>
+    <li>Image URLs (jpg, gif, png) as an img tag</li>
+    <li>General URLs as hyperlinks (works best when begins with http/https and/or ends with /)</li>
+    <li>URL can be in the middle of long string of text, output will preserve the rest of the text</li>
+    <li>Will match multiple URLs on a single input</li>
 </ul>
 
 <h2>Currently used by</h2>
