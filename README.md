@@ -7,12 +7,12 @@
 <p>No external libraries required. Just include and use. Pass in a string as a parameter. Returns the string with URLs converted to the desired HTML.</p>
 
 <code>
-    // Default to convert all
+    /* Default to convert all */
     string = embedica(string);
 </code>
 
 <code>
-    // Specify which URLs to convert
+    /* Specify which URLs to convert */
     var embedica_settings = {
         "youtube": true,
         "vimeo": true,
