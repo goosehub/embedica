@@ -4,7 +4,7 @@ Converts links into embed HTML for several sites.
 
 ## Usage
 
-No external libraries required. Just include and use. Pass in a string as a parameter. Returns the string with URLs converted to the desired HTML. Each embedded element is wrapped in a `span` with the class `embedica_element` and a class coresponding to it's type (Example: `embedica_youtube`).
+No external libraries required. Just include and use. Pass in a string as a parameter. Returns the string with URLs converted to the desired HTML. Each embedded element is wrapped in a `span` with the class `embedica_element` and a class coresponding to it's type (Example: `embedica_youtube`) to help you target with CSS and JavaScript as needed.
 
 ```
     /* Default to convert all */
