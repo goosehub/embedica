@@ -1,10 +1,10 @@
-<h1>embedica</h1>
+# embedica
 
-<p>Converts links into embed HTML for several sites.</p>
+Converts links into embed HTML for several sites.
 
-<h2>Usage</h2>
+## Usage
 
-<p>No external libraries required. Just include and use. Pass in a string as a parameter. Returns the string with URLs converted to the desired HTML.</p>
+No external libraries required. Just include and use. Pass in a string as a parameter. Returns the string with URLs converted to the desired HTML. Each embedded element is wrapped in a `span` with the class `embedica_element` and a class coresponding to it's type (Example: `embedica_youtube`).
 
 ```
     /* Default to convert all */
@@ -24,23 +24,22 @@
     var string = embedica(string, embedica_settings);
 ```
 
-<h2>Support</h2>
 
-<ul>
-    <li>Youtube (long url, share url, and mobile url formats, does not support start times or other options)</li>
-    <li>Vimeo</li>
-    <li>Twitch</li>
-    <li>Soundcloud (with an api call)</li>
-    <li>Vocaroo</li>
-    <li>Video URLs (webm, mp4, ogv) as a video tag</li>
-    <li>Image URLs (jpg, gif, png) as an img tag</li>
-    <li>General URLs as hyperlinks (works best when begins with http/https and/or ends with /)</li>
-    <li>URL can be in the middle of long string of text, output will preserve the rest of the text</li>
-    <li>Will match multiple URLs on a single input</li>
-</ul>
+## Support
 
-<h2>Currently used by</h2>
+* Youtube (long url, share url, and mobile url formats, does not support start times or other options)
+* Vimeo
+* Twitch
+* Soundcloud (with an api call)
+* Vocaroo
+* Video URLs (webm, mp4, ogv) as a video tag
+* Image URLs (jpg, gif, png) as an img tag
+* General URLs as hyperlinks (works best when begins with http/https and/or ends with /)
+* URL can be in the middle of long string of text, output will preserve the rest of the text
+* Will match multiple URLs on a single input
 
-<a href="http://smallcrowd.us/">http://smallcrowd.us/</a>
+## Currently used by
 
-<p>Public contributions large and small welcome and encouraged!</p>
+[http://smallcrowd.us/](http://smallcrowd.us/)
+
+### Public contributions large and small welcome and encouraged!
