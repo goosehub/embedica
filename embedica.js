@@ -11,6 +11,11 @@ function embedica(message, settings) {
     "image_url": true,
     "general_url": true
   };
+
+  // Space around break tags
+  var re = new RegExp('<br>', 'g');
+  message = message.replace(re, ' <br> ');
+
   // Merge passed settings with defaults
   settings = Object.assign(default_settings, settings);
   // Order important in some cases to avoid conflicts
