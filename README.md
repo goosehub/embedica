@@ -40,7 +40,7 @@ No external libraries required. Just include and use. Pass in a string as a para
 
 ## Currently used by
 
-[http://smallcrowd.us/](http://smallcrowd.us/)
+[https://smallcrowd.us/](https://smallcrowd.us/)
 
 [https://banhammer.site/](https://banhammer.site/)
 
