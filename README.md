@@ -44,4 +44,6 @@ No external libraries required. Just include and use. Pass in a string as a para
 
 [https://banhammer.site/](https://banhammer.site/)
 
+[http://bigworld.io/](http://bigworld.io/)
+
 ### Public contributions large and small welcome and encouraged!
