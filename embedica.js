@@ -7,6 +7,7 @@ function embedica(message, settings) {
     "twitch": true,
     "soundcloud": true,
     "vocaroo": true,
+    "imgur": true,
     "video_url": true,
     "image_url": true,
     "general_url": true
@@ -33,6 +34,9 @@ function embedica(message, settings) {
   }
   if (settings.vocaroo) {
     message = embedica_convert_vocaroo(message);
+  }
+  if (settings.imgur) {
+    message = embedica_convert_imgur(message);
   }
   if (settings.video_url) {
     message = embedica_convert_video(message);
@@ -78,6 +82,18 @@ function embedica_convert_vocaroo(input) {
   if (pattern.test(input)) {
     var replacement = '<span class="embedica_vocaroo embedica_element"><object><param name="movie" value="http://vocaroo.com/player.swf?playMediaID=$1&autoplay=0"></param><param name="wmode" value="transparent"></param><embed src="http://vocaroo.com/player.swf?playMediaID=$1&autoplay=0" wmode="transparent" type="application/x-shockwave-flash"></embed></object></span>';
     var input = input.replace(pattern, replacement);
+  }
+  return input;
+}
+
+function embedica_convert_imgur(input) {
+  var pattern = /(?:http?s?:\/\/)?(?:www\.)?(?:imgur\.com)\/a\/?(\S+)/g;
+  if (pattern.test(input)) {
+    // var input = '<blockquote class="imgur-embed-pub" lang="en" data-id="a/DXpWNfS"><a href="' + input + '"></a></blockquote>';
+    var replacement = '<span class="embedica_imgur embedica_element"><blockquote class="imgur-embed-pub" lang="en" data-id="a/$1"><a href="//imgur.com/$1"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script></span>';
+    // var input = '<span class="embedica_imgur embedica_element"><iframe src="' + input + '"></iframe></span>';
+    var input = input.replace(pattern, replacement);
+    console.log(input);
   }
   return input;
 }

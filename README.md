@@ -17,6 +17,7 @@ No external libraries required. Just include and use. Pass in a string as a para
         "twitch": true,
         "soundcloud": true,
         "vocaroo": true,
+        "imgur": true,
         "video_url": true,
         "image_url": true,
         "general_url": true
@@ -32,6 +33,7 @@ No external libraries required. Just include and use. Pass in a string as a para
 * Twitch
 * Soundcloud (with an api call)
 * Vocaroo
+* Imgur
 * Video URLs (webm, mp4, ogv) as a video tag
 * Image URLs (jpg, gif, png) as an img tag
 * General URLs as hyperlinks (works best when begins with http/https and/or ends with /)
