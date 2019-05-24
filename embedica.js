@@ -87,11 +87,9 @@ function embedica_convert_vocaroo(input) {
 }
 
 function embedica_convert_imgur(input) {
-  var pattern = /(?:http?s?:\/\/)?(?:www\.)?(?:imgur\.com)\/a\/?(\S+)/g;
+  var pattern = /(?:http?s?:\/\/)?(?:www\.)?(?:(?:m.)imgur\.com)\/a\/?(\S+)/g;
   if (pattern.test(input)) {
-    // var input = '<blockquote class="imgur-embed-pub" lang="en" data-id="a/DXpWNfS"><a href="' + input + '"></a></blockquote>';
     var replacement = '<span class="embedica_imgur embedica_element"><blockquote class="imgur-embed-pub" lang="en" data-id="a/$1"><a href="//imgur.com/$1"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script></span>';
-    // var input = '<span class="embedica_imgur embedica_element"><iframe src="' + input + '"></iframe></span>';
     var input = input.replace(pattern, replacement);
     console.log(input);
   }
