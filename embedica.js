@@ -13,6 +13,8 @@ function embedica(message, settings) {
     "general_url": true
   };
 
+  let closing_html = generate_closing_html(message);
+
   // Space around break tags
   var re = new RegExp('<br>', 'g');
   message = message.replace(re, ' <br> ');
@@ -47,13 +49,14 @@ function embedica(message, settings) {
   if (settings.general_url) {
     message = embedica_convert_link(message);
   }
+  message += closing_html;
   return message;
 }
 
 function embedica_convert_youtube(input) {
   var pattern = /(?:http?s?:\/\/)?(?:www\.)?(?:m\.)?(?:youtube\.com|youtu\.be)\/(?!channel\/)(?!user\/)(?:watch\?v=)?([a-zA-Z0-9_-]{11})(?:\S+)?/g;
   if (pattern.test(input)) {
-    var replacement = '<span class="embedica_youtube embedica_element"><iframe src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe></span>';
+    var replacement = '<span class="embedica_youtube embedica_element"><iframe src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>';
     var input = input.replace(pattern, replacement);
   }
   return input;
@@ -62,7 +65,7 @@ function embedica_convert_youtube(input) {
 function embedica_convert_vimeo(input) {
   var pattern = /(?:http?s?:\/\/)?(?:www\.)?(?:vimeo\.com)\/?(\S+)/g;
   if (pattern.test(input)) {
-    var replacement = '<span class="embedica_vimeo embedica_element"><iframe src="//player.vimeo.com/video/$1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></span>';
+    var replacement = '<span class="embedica_vimeo embedica_element"><iframe src="//player.vimeo.com/video/$1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
     var input = input.replace(pattern, replacement);
   }
   return input;
@@ -71,7 +74,7 @@ function embedica_convert_vimeo(input) {
 function embedica_convert_twitch(input) {
   var pattern = /(?:http?s?:\/\/)?(?:www\.)?(?:twitch\.tv)\/?(\S+)/g;
   if (pattern.test(input)) {
-    var replacement = '<span class="embedica_twitch embedica_element"><iframe src="https://player.twitch.tv/?channel=$1&!autoplay" frameborder="0" allowfullscreen="true" scrolling="no"></iframe></span>';
+    var replacement = '<span class="embedica_twitch embedica_element"><iframe src="https://player.twitch.tv/?channel=$1&!autoplay" frameborder="0" allowfullscreen="true" scrolling="no"></iframe>';
     var input = input.replace(pattern, replacement);
   }
   return input;
@@ -80,7 +83,7 @@ function embedica_convert_twitch(input) {
 function embedica_convert_vocaroo(input) {
   var pattern = /(?:http?s?:\/\/)?(?:www\.)?(?:vocaroo\.com\/i)\/?(\S+)/g;
   if (pattern.test(input)) {
-    var replacement = '<span class="embedica_vocaroo embedica_element"><object><param name="movie" value="http://vocaroo.com/player.swf?playMediaID=$1&autoplay=0"></param><param name="wmode" value="transparent"></param><embed src="http://vocaroo.com/player.swf?playMediaID=$1&autoplay=0" wmode="transparent" type="application/x-shockwave-flash"></embed></object></span>';
+    var replacement = '<span class="embedica_vocaroo embedica_element"><object><param name="movie" value="http://vocaroo.com/player.swf?playMediaID=$1&autoplay=0"></param><param name="wmode" value="transparent"></param><embed src="http://vocaroo.com/player.swf?playMediaID=$1&autoplay=0" wmode="transparent" type="application/x-shockwave-flash"></embed></object>';
     var input = input.replace(pattern, replacement);
   }
   return input;
@@ -89,7 +92,7 @@ function embedica_convert_vocaroo(input) {
 function embedica_convert_imgur(input) {
   var pattern = /(?:http?s?:\/\/)?(?:www\.)?(?:(?:m.)imgur\.com)\/a\/?(\S+)/g;
   if (pattern.test(input)) {
-    var replacement = '<span class="embedica_imgur embedica_element"><blockquote class="imgur-embed-pub" lang="en" data-id="a/$1"><a href="//imgur.com/$1"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script></span>';
+    var replacement = '<span class="embedica_imgur embedica_element"><blockquote class="imgur-embed-pub" lang="en" data-id="a/$1"><a href="//imgur.com/$1"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>';
     var input = input.replace(pattern, replacement);
     console.log(input);
   }
@@ -99,7 +102,7 @@ function embedica_convert_imgur(input) {
 function embedica_convert_video(input) {
   var pattern = /([-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?(?:webm|mp4|ogv))/gi;
   if (pattern.test(input)) {
-    var replacement = '<span class="embedica_video embedica_element"><video controls="" loop="" controls src="$1"></video></span>';
+    var replacement = '<span class="embedica_video embedica_element"><video controls="" loop="" controls src="$1"></video>';
     var input = input.replace(pattern, replacement);
   }
   return input;
@@ -109,7 +112,7 @@ function embedica_convert_image(input) {
   // Ignore " to not conflict with other converts
   var pattern = /(?!.*")([-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?(?:jpg|jpeg|gif|png)(?:\?\S+)?)/gi;
   if (pattern.test(input)) {
-    var replacement = '<span class="embedica_image embedica_element"><a href="$1" target="_blank"><img class="embedica_image embedica_element" src="$1"/></a></span>';
+    var replacement = '<span class="embedica_image embedica_element"><a href="$1" target="_blank"><img class="embedica_image embedica_element" src="$1"/></a>';
     var input = input.replace(pattern, replacement);
   }
   return input;
@@ -119,7 +122,7 @@ function embedica_convert_link(input) {
   // Ignore " to not conflict with other converts
   var pattern = /(?!.*")([-a-zA-Z0-9@:%_\+.~#?&//=;]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=;]*))/gi;
   if (pattern.test(input)) {
-    var replacement = '<span class="embedica_link embedica_element"><a href="$1" target="_blank">$1</a></span>';
+    var replacement = '<span class="embedica_link embedica_element"><a href="$1" target="_blank">$1</a>';
     var input = input.replace(pattern, replacement);
   }
   return input;
@@ -152,8 +155,12 @@ function embedica_convert_soundcloud(input) {
     }
 
     // Create placeholder with temporary id
-    var replacement = '<span id="' + soundcloud_id + '" class="embedica_soundcloud embedica_element"></span>';
+    var replacement = '<span id="' + soundcloud_id + '" class="embedica_soundcloud embedica_element">';
     var input = input.replace(pattern, replacement);
   }
   return input;
+}
+
+function generate_closing_html(closing_html) {
+  return '<span class="embedica_original_input" style="display: none;">' + closing_html + '</span></span>';
 }

@@ -25,6 +25,7 @@ No external libraries required. Just include and use. Pass in a string as a para
     var string = embedica(string, embedica_settings);
 ```
 
+Inside of `.embedica_element` is a hidden `span` with the class `embedica_original_input` that contains the original message.
 
 ## Support
 
